@@ -1,0 +1,127 @@
+:root {
+    --bg: #f4f8fb;
+    --card: #ffffff;
+    --primary: #0f766e;
+    --primary-dark: #115e59;
+    --text: #1f2937;
+    --muted: #4b5563;
+    --error: #b91c1c;
+    --line: #d1d5db;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at top left, #d7f6ee, transparent 35%), var(--bg);
+}
+
+.container {
+    width: min(960px, 92vw);
+    margin: 2rem auto;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.hero p {
+    margin-top: 0.4rem;
+    color: var(--muted);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
+}
+
+.form-grid {
+    display: grid;
+    gap: 0.45rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+input {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+}
+
+button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background: var(--primary-dark);
+}
+
+.busca {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.busca input {
+    flex: 1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.7rem 0.4rem;
+}
+
+.erro {
+    color: var(--error);
+    margin-bottom: 0.4rem;
+}
+
+.feedback {
+    color: #065f46;
+    background: #d1fae5;
+    border-radius: 8px;
+    padding: 0.5rem 0.7rem;
+}
+
+.erro-box {
+    color: #7f1d1d;
+    background: #fee2e2;
+    border-radius: 8px;
+    padding: 0.5rem 0.7rem;
+}
+
+@media (max-width: 700px) {
+    .busca {
+        flex-direction: column;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

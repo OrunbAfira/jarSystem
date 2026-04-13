@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Livros</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<main class="container">
+    <header class="hero">
+        <h1>Biblioteca</h1>
+        <p>Cadastro e consulta de livros com Spring MVC, MongoDB e Thymeleaf.</p>
+    </header>
+
+    <section class="card">
+        <h2>Novo livro</h2>
+        <p class="feedback" th:if="${mensagem}" th:text="${mensagem}"></p>
+        <p class="erro-box" th:if="${erro}" th:text="${erro}"></p>
+
+        <form th:action="@{/livros}" th:object="${livroForm}" method="post" class="form-grid">
+            <label for="titulo">Titulo</label>
+            <input id="titulo" type="text" th:field="*{titulo}" placeholder="Ex: Clean Code">
+            <small class="erro" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></small>
+
+            <label for="autor">Autor</label>
+            <input id="autor" type="text" th:field="*{autor}" placeholder="Ex: Robert C. Martin">
+            <small class="erro" th:if="${#fields.hasErrors('autor')}" th:errors="*{autor}"></small>
+
+            <label for="quantidade">Quantidade</label>
+            <input id="quantidade" type="number" min="0" th:field="*{quantidade}">
+            <small class="erro" th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></small>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>Acervo</h2>
+        <p class="erro-box" th:if="${erro}" th:text="${erro}"></p>
+        <form method="get" th:action="@{/livros}" class="busca">
+            <input type="text" name="q" th:value="${busca}" placeholder="Buscar por titulo">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Quantidade</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(livros)}">
+                <td colspan="4">Nenhum livro encontrado.</td>
+            </tr>
+            <tr th:each="livro : ${livros}">
+                <td th:text="${livro.id}"></td>
+                <td th:text="${livro.titulo}"></td>
+                <td th:text="${livro.autor}"></td>
+                <td th:text="${livro.quantidade}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>
